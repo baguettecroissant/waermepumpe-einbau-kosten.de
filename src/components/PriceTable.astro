@@ -1,0 +1,114 @@
+---
+import { siteConfig } from '../../site.config';
+---
+
+<div class="space-y-8" id="preis-table">
+  <!-- Table 1: Detailed breakdown (Budget, Standard, Premium) -->
+  <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 md:p-8">
+    <h3 class="text-xl font-bold text-gray-900 mb-2 font-heading flex items-center gap-2">
+      💶 Detail-Kostenaufschlüsselung Luft-Wasser-Wärmepumpe
+    </h3>
+    <p class="text-sm text-gray-600 mb-6">
+      Vergleich der typischen Kostenbestandteile für ein Einfamilienhaus in den Budget-Stufen Standard, Günstig (Budget) und Hochwertig (Premium):
+    </p>
+
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm price-table border-collapse rounded-xl overflow-hidden">
+        <thead>
+          <tr class="bg-brand-50 border-b border-gray-200">
+            <th class="px-4 py-3 text-left font-bold text-brand-700">Kostenposition</th>
+            <th class="px-4 py-3 text-right font-bold text-brand-700">Budget</th>
+            <th class="px-4 py-3 text-right font-bold text-brand-700">Standard</th>
+            <th class="px-4 py-3 text-right font-bold text-brand-700">Premium</th>
+          </tr>
+        </thead>
+        <tbody>
+          {siteConfig.pricingRows.map((row) => (
+            <tr class={`border-b border-gray-150 ${row.isTotal ? 'bg-gray-100 font-bold' : ''} ${row.isSubsidy ? 'text-success font-semibold' : ''} ${row.isFinal ? 'bg-brand-50 text-brand-700 font-bold text-base border-t border-brand-250' : ''}`}>
+              <td class="px-4 py-3.5">
+                <span>{row.label}</span>
+              </td>
+              <td class="px-4 py-3.5 text-right font-mono font-semibold">{row.budget}</td>
+              <td class="px-4 py-3.5 text-right font-mono font-semibold">{row.standard}</td>
+              <td class="px-4 py-3.5 text-right font-mono font-semibold">{row.premium}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="text-xs text-gray-500 mt-4 italic">
+      *Die KfW-Förderung von 50% entspricht einem typischen Mittelwert für selbstnutzende Eigentümer (30% Grundförderung + 20% Klimageschwindigkeits-Bonus).
+    </p>
+  </div>
+
+  <!-- Table 2: Costs by Heating Type & Hidden Costs (Grid layout) -->
+  <div class="grid md:grid-cols-2 gap-6">
+    <!-- Alt-heating cost comparison -->
+    <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 md:p-8 flex flex-col justify-between">
+      <div>
+        <h3 class="text-lg font-bold text-gray-900 mb-2 font-heading">
+          🔧 Zusatzkosten nach Altheizungstyp
+        </h3>
+        <p class="text-xs text-gray-600 mb-4">
+          Welche zusätzlichen Kosten anfallen, wenn Sie ein bestimmtes Heizungssystem ersetzen:
+        </p>
+        <div class="space-y-3">
+          {siteConfig.exchangeCosts.map((c) => (
+            <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 flex flex-col gap-1 card-hover">
+              <div class="flex justify-between items-center">
+                <span class="font-bold text-gray-800 text-xs font-heading">{c.type}</span>
+                <span class="font-data font-bold text-xs text-brand-700 bg-brand-50 px-2.5 py-1 rounded-full">{c.cost}</span>
+              </div>
+              <span class="text-[10px] text-gray-500 leading-snug">{c.note}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Hidden Costs -->
+    <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 md:p-8 flex flex-col justify-between">
+      <div>
+        <h3 class="text-lg font-bold text-gray-900 mb-2 font-heading">
+          ⚠️ Häufig vergessene Nebenkosten
+        </h3>
+        <p class="text-xs text-gray-600 mb-4">
+          Einmalige und laufende Kosten, die in normalen Heizungsbauer-Angeboten oft fehlen:
+        </p>
+        <div class="space-y-3">
+          {siteConfig.hiddenCosts.map((h) => (
+            <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 flex flex-col gap-1 card-hover">
+              <div class="flex justify-between items-center">
+                <span class="font-bold text-gray-800 text-xs font-heading">{h.item}</span>
+                <span class="font-data font-bold text-xs text-brand-700 bg-brand-50 px-2.5 py-1 rounded-full">{h.cost}</span>
+              </div>
+              <span class="text-[10px] text-gray-500 leading-snug">{h.frequency}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Regional variations -->
+  <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 md:p-8">
+    <h3 class="text-lg font-bold text-gray-900 mb-2 font-heading">
+      📍 Regionale Preisunterschiede in Deutschland
+    </h3>
+    <p class="text-sm text-gray-600 mb-6">
+      Die tatsächlichen Montagekosten schwanken je nach Postleitzahl und Bundesland um bis zu 25%:
+    </p>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {siteConfig.regionalMultipliers.map((r) => (
+        <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 flex flex-col gap-2 card-hover">
+          <span class="font-bold text-gray-900 text-xs font-heading">{r.region}</span>
+          <div class="flex justify-between items-baseline mt-1">
+            <span class="text-xs font-semibold text-gray-500">Faktor: {r.factor}</span>
+            <span class="font-data font-bold text-sm text-brand-700">{r.typicalPrice}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,218 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* Load fonts from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Red+Hat+Mono:ital,wght@0,300..700;1,300..700&family=Sora:wght@100..800&display=swap');
+
+/* === PALETTE "WÄRMEPUMPE EINBAU KOSTEN" — Design System === */
+@theme {
+  /* Brand-Anthrazit — Technisch/Seriös */
+  --color-brand-50: #ECEFF1;   /* primary-light */
+  --color-brand-100: #CFD8DC;  /* card-border */
+  --color-brand-200: #B0BEC5;
+  --color-brand-500: #455A64;  /* secondary */
+  --color-brand-600: #37474F;  /* primary */
+  --color-brand-700: #37474F;  /* primary */
+  --color-brand-800: #263238;  /* dark primary */
+  --color-brand-900: #1C2327;
+
+  /* Accent-Neongrün — CTA und Aktion */
+  --color-accent-400: #69F0AE;
+  --color-accent-500: #00E676;  /* primary CTA */
+  --color-accent-600: #00C853;  /* CTA Hover */
+
+  /* Statusfarben */
+  --color-success: #00C853;
+  --color-warning: #FF6F00;
+
+  /* Backgrounds & Text */
+  --color-dark: #1A1A1A;
+  --color-text-dark: #1A1A1A;
+  --color-text-light: #78909C;
+}
+
+/* === TYPOGRAPHIE === */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Noto Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color: #1A1A1A;
+  background-color: #FAFAFA;
+}
+
+h1, h2, h3, h4, h5, h6,
+.font-heading {
+  font-family: 'Sora', system-ui, -apple-system, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.font-data,
+.font-mono {
+  font-family: 'Red Hat Mono', 'Courier New', monospace;
+}
+
+/* === HERO GRADIENT — Dunkles Anthrazit mit Overlay === */
+.gradient-hero {
+  background: linear-gradient(135deg, rgba(38, 50, 56, 0.95) 0%, rgba(69, 90, 100, 0.90) 50%, rgba(38, 50, 56, 0.85) 100%);
+  padding-top: 5.5rem !important; /* Spacing for navbar */
+}
+
+.gradient-hero-image {
+  background-image: var(--hero-bg, none);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  padding-top: 6.5rem !important;
+}
+.gradient-hero-image::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(38, 50, 56, 0.93), rgba(69, 90, 100, 0.85));
+  z-index: 0;
+}
+.gradient-hero-image > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* === CTA GRADIENT — Neongrün mit dunklem Text === */
+.cta-gradient {
+  background: linear-gradient(135deg, #00E676 0%, #69F0AE 100%);
+  color: #1A1A1A !important;
+}
+.cta-gradient:hover {
+  background: linear-gradient(135deg, #00C853 0%, #00E676 100%);
+  transform: scale(1.025);
+  box-shadow: 0 8px 24px rgba(0, 230, 118, 0.4);
+}
+
+/* === SECTION GRADIENT === */
+.section-gradient {
+  background: linear-gradient(180deg, #FAFAFA 0%, #ECEFF1 100%);
+}
+
+/* === MICRO-ANIMATIONS === */
+
+@keyframes pulse-soft {
+  0%, 100% { transform: scale(1); opacity: 0.95; }
+  50% { transform: scale(1.03); opacity: 1; }
+}
+.pulse-soft {
+  animation: pulse-soft 3s ease-in-out infinite;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-up {
+  animation: fade-up 0.5s ease-out both;
+}
+
+@keyframes count-up {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.count-up {
+  animation: count-up 0.7s ease-out both;
+  animation-delay: 0.2s;
+}
+
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px -5px rgba(38, 50, 56, 0.12), 0 8px 16px -6px rgba(38, 50, 56, 0.06);
+  border-color: #B0BEC5;
+}
+
+@keyframes arrow-bounce {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(4px); }
+}
+.arrow-animate:hover .arrow-icon {
+  animation: arrow-bounce 0.6s ease-in-out infinite;
+}
+
+/* === FAQ Accordion === */
+details summary {
+  cursor: pointer;
+  list-style: none;
+}
+details summary::-webkit-details-marker {
+  display: none;
+}
+details[open] summary .faq-chevron {
+  transform: rotate(180deg);
+}
+.faq-chevron {
+  transition: transform 0.25s ease;
+}
+
+/* === Price Cards === */
+.price-card {
+  border-left: 4px solid #00E676;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.price-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 230, 118, 0.15);
+}
+
+/* === Info Cards === */
+.info-card {
+  background: #ECEFF1;
+  border-left: 4px solid #37474F;
+}
+
+/* === Price tables === */
+.price-table th {
+  background: #ECEFF1;
+  color: #37474F;
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+}
+.price-table td.price {
+  font-family: 'Red Hat Mono', monospace;
+  color: #37474F;
+  font-weight: 600;
+}
+.price-table tr:nth-child(even) {
+  background: #FAFAFA;
+}
+
+/* === Navbar scroll effect === */
+.navbar-scroll {
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+.navbar-scrolled {
+  background-color: rgba(38, 50, 56, 0.97) !important;
+  box-shadow: 0 4px 20px rgba(38, 50, 56, 0.2);
+}
+
+/* === Footer === */
+.footer-bg {
+  background-color: #1A1A1A;
+  color: #FAFAFA;
+}
+
+/* === Sticky CTA Animation === */
+.sticky-cta-enter {
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+/* === DSGVO Cookie Banner === */
+.cookie-banner {
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.15);
+}

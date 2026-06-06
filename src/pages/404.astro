@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteConfig } from '../../site.config';
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "404 - Seite nicht gefunden | " + siteConfig.name,
+    "url": "https://" + siteConfig.domain + "/404/",
+  }
+];
+---
+
+<BaseLayout
+  title={`404 - Seite nicht gefunden | ${siteConfig.name}`}
+  description="Die gesuchte Seite konnte leider nicht gefunden werden."
+  noindex={true}
+  canonical="/404/"
+  jsonLd={jsonLd}
+>
+  <section class="min-h-[75vh] flex items-center justify-center py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-[#FAFAFA]">
+    <!-- Decorative background elements -->
+    <div class="absolute top-1/4 left-1/10 w-96 h-96 bg-accent-500/5 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-1/4 right-1/10 w-96 h-96 bg-brand-700/5 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-md w-full bg-white rounded-3xl border border-gray-200 shadow-2xl p-8 md:p-12 relative overflow-hidden card-hover text-center space-y-8 z-10">
+      <!-- Glow effect inside card -->
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(0,230,118,0.1),transparent_50%)] pointer-events-none"></div>
+      
+      <div class="space-y-6 relative z-10">
+        <!-- Animated Icon Container -->
+        <div class="inline-flex items-center justify-center w-24 h-24 rounded-full bg-brand-50 border border-brand-100 text-brand-700 text-4xl mb-2 relative">
+          <span class="relative z-10 animate-bounce-slow">🔍</span>
+          <div class="absolute inset-0 rounded-full bg-accent-500/20 animate-ping opacity-75"></div>
+        </div>
+        
+        <div class="space-y-2">
+          <h1 class="text-5xl font-extrabold text-gray-900 font-heading tracking-tight">
+            404
+          </h1>
+          <h2 class="text-xl font-bold text-gray-800 font-heading">
+            Seite nicht gefunden
+          </h2>
+        </div>
+        
+        <p class="text-xs md:text-sm text-gray-600 leading-relaxed max-w-sm mx-auto">
+          Es tut uns leid, aber die gesuchte Seite existiert leider nicht (mehr) oder wurde verschoben. Nutzen Sie einen der Links unten, um zurückzufinden.
+        </p>
+        
+        <div class="flex flex-col gap-3 pt-4">
+          <a href="/" class="cta-gradient text-white text-center py-3.5 rounded-xl font-bold text-sm shadow-md hover:shadow-lg transition-all font-heading">
+            🏠 Zur Startseite
+          </a>
+          <a href="/ratgeber/" class="bg-gray-150 hover:bg-gray-200 text-gray-700 text-center py-3.5 rounded-xl font-bold text-sm transition-all font-heading border border-gray-200">
+            📚 Zu den Ratgebern & Artikeln
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .bg-gray-150 {
+    background-color: #f1f5f9;
+  }
+  .bg-gray-150:hover {
+    background-color: #e2e8f0;
+  }
+  @keyframes bounce-slow {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+  .animate-bounce-slow {
+    animation: bounce-slow 3s infinite ease-in-out;
+  }
+</style>

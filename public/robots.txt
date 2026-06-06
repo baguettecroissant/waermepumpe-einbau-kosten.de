@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://waermepumpe-einbau-kosten.de/sitemap-index.xml
