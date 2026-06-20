@@ -25,7 +25,7 @@ export const siteConfig = {
 
   // === MONETARISIERUNG (TAP TAP HOME) ===
   taptaphome: {
-    mode: 'redirect' as 'redirect' | 'iframe' | 'api',
+    mode: 'api' as 'redirect' | 'iframe' | 'api',
     trackingLinkHP: "https://www.taptaphome.com/?utm_source=affiliate&utm_campaign=waermepumpe_einbau_kosten_de",
     partnerName: "DAA GmbH (BOSCH-Gruppe)",
     contactPerson: "Tuuli Himme (tuuli.himme@taptaphome.com)",
